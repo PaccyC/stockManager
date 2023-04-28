@@ -2,8 +2,7 @@ const User=require('../models/userModel');
 
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
-const { use } = require('../routes/userRoutes');
-const e = require('express');
+
 
 
 const createToken=(_id)=>{
@@ -12,44 +11,33 @@ const createToken=(_id)=>{
 }
 
 
-exports.register=async(req,res)=>{
+exports.getUsers=async(req,res)=>{
 
-    const {username,email,password,address,age}=req.body;
-
-    
-    
     try{
-        const exists=await User.findOne({email});
-    
-        if(exists){
-            throw Error ("Email already exists");
-        }
 
-    if(!username || !email || !password || !address || !age){
-        throw Error("All fields must have a value");
-    }
-
-    const salt= await bcrypt.genSalt(10);
-    const hash=await bcrypt.hash(password,salt);
-
-    const user= await User.create({username,email,password:hash,address,age});
-    
-    user.save();
-    
-    const token=await createToken(user._id);
-
-    res.status(200).json({user:user,token});
-    return user;
+        const users=await User.find({});
+        res.status(200).json({users});
     }
     catch(error){
-        res.json({error:error.message})
+        res.status(400).json({error:error.message});
     }
-
-    
-
-
-
 }
+
+exports.register= async (req, res) => {
+    const {username,age,email, password} = req.body
+  
+    try {
+      const user = await User.signup(username,age,email, password)
+  
+      // create a token
+      const token = createToken(user._id)
+  
+      res.status(200).json({email, token})
+    } catch (error) {
+      res.status(400).json({error: error.message})
+    }
+  }
+  
 
 exports.login=async(req,res)=>{
     const {email,password}=req.body;
@@ -61,6 +49,7 @@ exports.login=async(req,res)=>{
         }
         
         if(!email || !password){
+            
             throw Error("All fields must have value");
         }
 
@@ -69,7 +58,7 @@ exports.login=async(req,res)=>{
             throw Error ("Passwords don't match");
         }
 
-        const token=await createToken(user._id);
+        const token= await createToken(user._id);
 
         res.status(200).json({user:user,token});
         return user;
