@@ -24,10 +24,10 @@ exports.getUsers=async(req,res)=>{
 }
 
 exports.register= async (req, res) => {
-    const {username,age,email, password} = req.body
+    const {firstName,lastName,phoneNumber,username,email,password} = req.body
   
     try {
-      const user = await User.signup(username,age,email, password)
+      const user = await User.signup(firstName,lastName,phoneNumber,username,email, password)
   
       // create a token
       const token = createToken(user._id)
@@ -38,7 +38,6 @@ exports.register= async (req, res) => {
     }
   }
   
-
 exports.login=async(req,res)=>{
     const {email,password}=req.body;
     try{
