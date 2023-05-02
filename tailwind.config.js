@@ -12,7 +12,12 @@ module.exports = {
     },
     extend: {
    colors:{
-    brightRed: 'hsl(12, 88%, 59%)'
+    brightRed: 'hsl(12, 88%, 59%)',
+    aliceBlue:'rgb(241,248,255)',
+    blue:'rgb(0,44,255)',
+    nobel:'rgb(160,160,160)',
+    sub_nobel:'hsl(83.53%,87.06%,99%)',
+    silver:'rgb(188,188,188)'
    }
     },
   },

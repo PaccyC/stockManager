@@ -1,92 +1,91 @@
 
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
+import logo from '../images/logo.svg'
+import googgle from '../images/google.png'
 
 export default function Signup() {
   const [username,setUsername]=useState('');
-  const [age,setAge]=useState(0);
-  const [email, setEmail] = useState('')
+   const [firstName,setFirstname]=useState('');
+   const [lastName,setLastname]=useState('');
+      const [phoneNumber,setPhoneNumber]=useState('');
+      const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const {signup, error, isLoading} = useSignup()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await signup(username,age,email, password)
+    await signup(firstName,lastName,phoneNumber,username,email, password)
   }
    
  
 
  
   return (
+<div className='relative mx-24 w-[850px] h-[750px] left-72 top-32 bg-aliceBlue text-center rounded-[20px]'>
+  <img className='mx-auto text-center space-y-12' src={logo} alt=''/>
+  <h1 className='mx-auto space-y-12 text-blue Inter font-normal text-4xl text-center mb-6'>
+    Create Account
+    </h1>
 
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-      
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">CREATE ACCOUNT</h2>
-    </div>
-  
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="space-y-6" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+
+      <div className='grid grid-cols-2 grid-rows-3 gap-x-20 gap-y-7'>
       <div>
-          <div className='flex '>
-          <label htmlFor="username" className="block text-sm font-semibold leading-6 text-gray-900">Username</label>
-          </div>
-          <div className="mt-2">
-            <input type="text"   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={(e)=>setUsername(e.target.value)}
-              value={username}/>
-          </div>
-        </div>
-        <div>
-          <div className='flex '>
-          <label htmlFor="age" className="block text-sm font-semibold leading-6 text-gray-900">Age</label>
-          </div>
-          <div className="mt-2">
-            <input type="number" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={(e)=>setAge(e.target.value)}
-              value={age}/>
-          </div>
-        </div>
-
-       
- 
-
-        <div>
-          <div className='flex '>
-          <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Email address</label>
-          </div>
-          <div className="mt-2">
-            <input  type="email"  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={(e)=>setEmail(e.target.value)}
-              value={email}/>
-          </div>
-        </div>
-  
-        <div>
-          <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">Password</label>
-        
-          </div>
-          <div className="mt-2">
-            <input type="password"  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              onChange={(e)=>setPassword(e.target.value)}
-              value={password}/>
-          </div>
-        </div>
-  
-        <div>
-          <button type="submit" disabled={isLoading} className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-        </div>
-
-        {error && <div className='text-red-400 h-7 w-52 border-red-400'>{error}</div>}
-      </form>
-  
-      <p className="mt-10 text-center text-sm text-gray-500">
-       Already have an account?
-        <a href="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SIGN IN</a>
-      </p>
+    <label className='Inter font-300 font-[25px]  text-black space-y-6 mb-4 pl-8 float-left'>First Name</label>
+    <input type='text' className='w-[300px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel' 
+    onChange={(e)=>setFirstname(e.target.value)}
+    value={firstName}
+    />
     </div>
-  </div>
+    <div>
+    <label className='Inter font-300 font-[25px] text-center text-black mb-4 space-y-6 pl-8 float-left'>Last Name</label>
+    <input type='text' className='w-[300px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel'
+        onChange={(e)=>setLastname(e.target.value)}
+    value={lastName}
+    />
+    
+    </div>
+      <div>
+    <label className='Inter font-300 font-[25px] text-center text-black mb-4 space-y-6 pl-8 float-left'>Email Address</label>
+    <input type='email' className='w-[300px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel'
+        onChange={(e)=>setEmail(e.target.value)}
+    value={email}
+    />
+    
+    </div>
+  
+        <div>
+    <label className='Inter font-300 font-[25px] text-center text-black mb-4 space-y-6 pl-8 float-left'>Phone Number</label>
+    <input type='phone' className='w-[300px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel'
+     onChange={(e)=>setPhoneNumber(e.target.value)}
+    value={phoneNumber}
+    />
+    </div>
+    <div>
+    <label className='Inter font-300 font-[25px] text-center text-black mb-4 pl-8 float-left'>Username</label>
+    <input type='text' className='w-[300px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel'
+     onChange={(e)=>setUsername(e.target.value)}
+    value={username}
+    />
+    </div>
+    <div className='flex md:flex-col'>
+    <label className='Inter font-300 font-[25px] text-center text-black mb-4 space-y-6 pl-8 float-left'>Password</label>
+    <input type='password' className='w-[300px] h-[50px] text-[25px] text-center border-2 border-nobel rounded-[20px] hover:border-nobel' 
+     onChange={(e)=>setPassword(e.target.value)}
+    value={password}
+    />
+    </div>
+    </div>
+    <button  className='w-[200px] h-[60px] bg-[rgb(102,136,255)] rounded-[20px] text-white font-[30px] text-center line-[36px] Inter mx-auto mt-8' disabled={isLoading}>SIGN UP</button>
+
+  <button className='w-[600px] h-[80px] bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'>
+    {error && <div className='w-[300px] h-[40px] border-red-500 bg-white text-red-500'>{error}</div>}
+  <img src={googgle} alt='' className='mr-4'/>
+  Sign up with Google
+</button>
+    </form>
+</div>
   )
 }

@@ -1,10 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { useLogin } from '../hooks/useLogin';
-import {Icon} from 'react-icons-kit'
-import {eyeOff}from 'react-icons-kit/feather/eyeOff'
-import {eye} from 'react-icons-kit/feather/eye'
-
+import logo from '../images/logo.svg'
+import googgle from '../images/google.png'
 
 export default function Login() {
   const [email,setEmail]=useState('');
@@ -16,69 +14,39 @@ export default function Login() {
 
   await  login(email,password);
 }
-const [type,setType]=useState('password');
-const [icon,setIcon]=useState(eyeOff);
 
-const handleToggle=()=>{
-  if(type==='password'){
-  setIcon(eye);
-  setType('text');
-  }
-  else{
-    setIcon(eyeOff);
-    setType('password');
-  }
-}
   return (
-<div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-  <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-  </div>
+<div className='relative mx-24 w-[750px] h-[600px] bg-aliceBlue text-center left-72 top-32 rounded-[20px] flex flex-col justify-center'>
+  <img className='mx-auto mb-5' src={logo} alt=''/>
+  <h1 className='mx-auto mb-6 text-blue Inter font-normal text-4xl'>Log into your account</h1>
+  <form onSubmit={handleSubmit} className='mx-auto'>
 
-  <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form className="space-y-6" onSubmit={handleSubmit}>
-      <div>
-        <div className='flex'>
-        <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Email address</label>
-        </div>
-        <div className="mt-2">
-          <input  type="email"  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          onChange={(e)=>setEmail(e.target.value)}
-          value={email}/>
-        </div>
+    <div className='flex flex-col items-center'>
+      <div className='text-start'>
+        <label className='block Inter font-300 font-[25px] text-black mb-3'>Email Address</label>
+        <input type='email' className='w-[350px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel'
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
       </div>
 
-      <div>
-        <div className="flex items-center justify-between">
-          <label htmlFor="password" class="block text-sm font-semibold leading-6 text-gray-900">Password</label>
-          <div className="text-sm">
-            <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-          </div>
-        </div>
-        <div className='w-full  relative'>
-        <div className="mt-2  p-4 w-full ">
-          <input  type={type} className=" w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  bg-transparent outline-none border-hidden h-10"
-            onChange={(e)=>setPassword(e.target.value)}
-            value={password}/>
-        </div> 
-        <div className='text-2xl absolute top-4 right-5'>
-          <Icon icon={icon} onClick={handleToggle} />
-        </div>
-        </div>
-       
+      <div className='text-start '>
+        <label className='block Inter font-300 font-[25px] text-black mb-3'>Password</label>
+        <input type='password' className='w-[350px] h-[50px] text-[25px] text-center border-2 border-nobel rounded-[20px] hover:border-nobel' 
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
       </div>
-
-      <div>
-        <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-      </div>
-    </form>
-
-    <p className="mt-10 text-center text-sm text-gray-500">
-      Not a member?
-      <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SIGN IN</a>
-    </p>
-  </div>
-</div>
+    </div>
     
+    <button className='w-[200px] h-[50px] bg-[#6688FF] rounded-[20px] font-600 text-2xl text-white  text-center line-[36px] Inter mx-auto mt-8'>LOGIN</button>
+
+    <button className='w-[500px] h-14 bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'>
+      <img src={googgle} alt='' className='mr-4'/>
+      Login with Google
+    </button>
+  </form>
+</div>
+
   )
 }
