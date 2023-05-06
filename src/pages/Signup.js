@@ -14,9 +14,8 @@ export default function Signup() {
   const {signup, error, isLoading} = useSignup()
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    await signup(firstName,lastName,phoneNumber,username,email, password)
+    e.preventDefault();
+    await signup(firstName,lastName,phoneNumber,username,email,password)
   }
    
  
@@ -70,13 +69,14 @@ export default function Signup() {
     value={username}
     />
     </div>
-    <div className='flex md:flex-col'>
-    <label className='Inter font-300 font-[25px] text-center text-black mb-4 space-y-6 pl-8 float-left'>Password</label>
-    <input type='password' className='w-[300px] h-[50px] text-[25px] text-center border-2 border-nobel rounded-[20px] hover:border-nobel' 
+    <div>
+    <label className='Inter font-300 font-[25px] text-center text-black mb-4 pl-8 float-left'>Password</label>
+    <input type='password' className='w-[300px] h-[50px] bg-white border-2 border-nobel rounded-[20px] focus:border-nobel'
      onChange={(e)=>setPassword(e.target.value)}
     value={password}
     />
     </div>
+    
     </div>
     <button  className='w-[200px] h-[60px] bg-[rgb(102,136,255)] rounded-[20px] text-white font-[30px] text-center line-[36px] Inter mx-auto mt-8' disabled={isLoading}>SIGN UP</button>
 

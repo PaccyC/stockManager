@@ -15,7 +15,7 @@ export const authReducer=(action,state )=>{
                 }
               case 'UPDATEUSER':
                 const updatedUser=action.payload.user;
-                const userId=action.payload.user;
+                const userId=action.payload.userId;
                 const updatedUsers=state.users.map((user)=>
                     user._id === userId ? updatedUser :user
                 );
@@ -48,7 +48,7 @@ export const AuthContextProvider = ({ children }) => {
       }
     }, [])
   
-    console.log('AuthContext state:', state)
+    // console.log('AuthContext state:', state)
     
     return (
       <AuthContext.Provider value={{ ...state, dispatch }}>

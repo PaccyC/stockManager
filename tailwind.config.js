@@ -17,7 +17,9 @@ module.exports = {
     blue:'rgb(0,44,255)',
     nobel:'rgb(160,160,160)',
     sub_nobel:'hsl(83.53%,87.06%,99%)',
-    silver:'rgb(188,188,188)'
+    silver:'rgb(188,188,188)',
+    gray:'rgb(187,187,187)',
+    lightRed:'rgba(255,11,11,0.76)'
    }
     },
   },
