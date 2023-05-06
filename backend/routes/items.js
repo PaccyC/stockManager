@@ -12,16 +12,16 @@ const {addItem,
 
 const router=express.Router();
 
-router.use(authMiddleware);
+// router.use(authMiddleware);
 
-router.get('/',getItems)
-router.get('/:id',getItemsById)
+router.get('/',getItems);
+router.get('/:id',getItemsById);
 
-router.post('/',addItem)
+router.post('/',addItem);
 
-router.put('/:id',updateItem)
+router.put('/:id',updateItem);
 
-router.delete('/:id',deleteItem)
+router.delete('/:id',deleteItem);
 
 
 module.exports=router;

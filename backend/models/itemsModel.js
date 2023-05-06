@@ -10,6 +10,10 @@ const itemsSchema= new mongoose.Schema({
         type:Number,
         required:true
     },
+    unitPrice:{
+     type:Number,
+     required:true
+    },
     mfgDate:{
         type:Date,
         required:true

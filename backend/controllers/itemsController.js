@@ -3,13 +3,13 @@ const Items=require('../models/itemsModel');
 
 const addItem=async(req,res)=>{
 
-    const {itemName,amount,mfgDate,expDate}=req.body;
+    const {itemName,amount,unitPrice,mfgDate,expDate}=req.body;
     
     try{
-     if(!itemName || !amount || !mfgDate || !expDate){
+     if(!itemName || !unitPrice || !amount || !mfgDate || !expDate){
         throw Error("All fields must have value");
      }
-     const item= await Items.create({itemName,amount,mfgDate,expDate});
+     const item= await Items.create({itemName,amount,unitPrice,mfgDate,expDate});
      res.status(200).json({item});
      return item;
 
@@ -24,7 +24,7 @@ const getItems=async(req,res)=>{
 try{
 
     const items= await Items.find({});
-    res.status(200).json({items});
+    res.status(200).json({items,ok:true});
 }
 
 catch(error){
