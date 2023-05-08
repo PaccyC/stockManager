@@ -23,7 +23,7 @@ export default function MenuDropDown() {
   return (
     <div>
        <section>
-      <div className={`bg-aliceBlue min-h-[450px] ${open ? 'w-72' : 'w-16'} top-[144px] duration-500 text-blue `}>
+      <div className={`bg-aliceBlue min-h-[450px] ${open ? 'w-64' : 'w-16'} top-[144px] duration-500 text-blue `}>
         <div className='py-3 flex justify-end'>
           <AiOutlineMenu size={26} className='cursor-pointer text-black' onClick={() => setOpen(!open)} />
         </div>
