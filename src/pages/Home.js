@@ -1,18 +1,20 @@
 import React from "react"
-
 import MenuDropDown from "../components/MenuDropDown"
+
 import Navbar from "../components/Navbar"
-import Stock from "../components/Stock"
+
+import Dashboard from "../components/Dashboard"
 
 export default function Home() {
 
-
   return (
-    <>
-   <Navbar/>
-    {/* <MenuDropDown/> */}
-    <Stock/>
+   <section className="relative w-full h-[100vh]">
+    
+    <Navbar/>
+   <MenuDropDown/>
+   <Dashboard/>
+   </section>
 
-    </>
+   
   )
 }

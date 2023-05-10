@@ -87,7 +87,10 @@ function AddProduct({closeModal}){
             />
           </div>
         </div>
-         <button className=' absolute text-black bg-blue h-[60px] w-[100px] rounded-[15px] text-2xl right-[200px] bottom-0'>
+         <button className=' absolute text-black bg-blue h-[60px] w-[100px] rounded-[15px] text-2xl right-[200px] bottom-0'
+         
+         onClick={()=>closeModal()}
+         >
             Add 
          </button>
      

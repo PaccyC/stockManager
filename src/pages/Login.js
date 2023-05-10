@@ -16,7 +16,7 @@ export default function Login() {
 }
 
   return (
-<div className='relative mx-24 w-[750px] h-[600px] bg-aliceBlue text-center left-72 top-32 rounded-[20px] flex flex-col justify-center'>
+<div className='absolute mx-24 w-[750px] h-[600px] bg-aliceBlue text-center left-72 top-36 rounded-[20px] flex flex-col justify-center'>
   <img className='mx-auto mb-5' src={logo} alt=''/>
   <h1 className='mx-auto mb-6 text-blue Inter font-normal text-4xl'>Log into your account</h1>
   <form onSubmit={handleSubmit} className='mx-auto'>

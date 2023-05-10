@@ -7,18 +7,18 @@ import { AiOutlineStock } from 'react-icons/ai';
 import {IoMdNotifications} from 'react-icons/io';
 import {MdOutlineKeyboardArrowDown} from 'react-icons/md'
 
+
 export default function Navbar() {
-  const { user } = useAuthContext();
   const [isStockActive, setIsStockActive] = useState(false);
   const [isDashboardActive, setIsDashboardActive] = useState(false);
   const menus=["Settings","Profile Information","Notifications","Logout"];
   const [open,setOpen]=useState(false);
   const menuRef=useRef();
-  const imgRef=useRef();
+
 
   return (
     <div className='w-[100%] h-[120px] left-0 top-0 bg-aliceBlue border-2 border-s border-silver flex justify-between items-center pr-5'>
-      <img src={logo} />
+      <img src={logo} alt=''/>
       <div className='flex md:flex-row text-center'>
         <Link
           className={`px-5 flex items-center `}
@@ -26,6 +26,7 @@ export default function Navbar() {
             setIsStockActive(true);
             setIsDashboardActive(false);
           }}
+          to='/stock'
         >
           <AiOutlineStock className='text-blue text-4xl mr-2' to='/stock'/>
           <h2 className={`text-lg font-semibold ${isStockActive ? "text-blue" : "text-black"} ${
@@ -40,6 +41,7 @@ export default function Navbar() {
             setIsDashboardActive(true);
             setIsStockActive(false);
           }}
+          to='/dashboard'
         >
           <MdOutlineDashboard className='text-blue text-4xl mr-2' to='/dashboard' />
           <h2 className={`ext-lg font-semibold ${isDashboardActive ? "text-blue":"text-black"} ${
@@ -56,15 +58,15 @@ export default function Navbar() {
       </div>
       <div className='relative w-[175px] h-[70px] bg-aliceBlue border-s border-2 border-gray rounded-[40px]'>
         <button className='absolute top-[50%] left-[70%] text-4xl font-normal'>
-          <MdOutlineKeyboardArrowDown onClick={()=>setOpen(!open)}/>
+          <MdOutlineKeyboardArrowDown onClick={()=>setOpen(!open)} />
         </button>
       {open &&
         <div ref={menuRef} className='absolute bg-white w-52 shadow-lg right-10 top-24'>
-          <ul>
+          <ul className=' '>
 
           {
             menus.map((menu)=>(
-              <li className={`p-2 text-lg cursor-pointer ${menu ==='Logout' && 'text-red-700'} rounded hover:bg-aliceBlue`} key={menu}>{menu}</li>
+              <li className={` p-2 text-lg cursor-pointer ${menu ==='Logout' && 'text-red-700'} rounded hover:bg-aliceBlue`} key={menu}>{menu}</li>
 
               ))
               }

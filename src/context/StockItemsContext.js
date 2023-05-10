@@ -12,19 +12,18 @@ const stockReducer=(state,action)=>{
               return {
                     stockItems:[...state.stockItems,action.payload]
                 }
-              case "UPDATE_STOCKITEMS":
-                const updatedItem=action.payload;
-                const index=state.stockItems.findIndex(item=>item.id ===updatedItem.id);
-                if(index === -1){
-                    return state;
-                }
-                const updatedItems=[...state.stockItems];
-                 updatedItems[index]=updatedItem
 
-                return{
-                    ...state,
-                    stockItems:updatedItems
-                }  
+                case "UPDATE_STOCKITEMS":
+                    const updatedItem = action.payload;
+                    const updatedItems = state.stockItems.map(item =>
+                      item.id === updatedItem.id ? updatedItem : item
+                    );
+              
+                    return {
+                      ...state,
+                      stockItems: updatedItems
+                    };
+             
                case "DELETE_ITEM":
                 return {
                     stockItems: state.stockItems.filter((item)=>item._id !==action.payload._id)

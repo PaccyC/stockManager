@@ -9,6 +9,8 @@ import {MdAdd} from 'react-icons/md'
 import AddProduct from './AddProductForm';
 import Manage from '../components/Manage';
 import {Link} from 'react-router-dom'
+import MenuDropDown from './MenuDropDown';
+import Navbar from './Navbar';
 function Stock() {
     const {stockItems, dispatch} = useStockItemContext();
 
@@ -33,8 +35,16 @@ useEffect(()=>{
         fetchStockItems();
       }
     }, [dispatch, user])
-    const handleDelete=()=>{
+    const handleDelete=async({stockItem})=>{
+    const response=await fetch(`/api/item/${stockItem._id}`,{
+      method:"DELETE"
+    })
 
+    const json=await response.json();
+    if(response.ok){
+      
+          dispatch({type:"DELETE_ITEM",payload:json});
+        }
     }
  //popup states
  const [openModal,setOpenModal]=useState(false)
@@ -54,7 +64,10 @@ const handleCloseModal = () => {
   setIsInactive(false);
 };
   return (
-    <div className='relative w-full h-[700px]'> 
+    <>
+    <Navbar/>
+    <MenuDropDown/>
+    <div className='absolute w-[1235px] h-[90vh] top-36 left-[270px]'> 
     <div className={` ${isInactive ? 'inactive' : ''}`}>
     <h1 className='font-normal text-[26px] font-400 text-black text-center my-4'>
         Available Products in stock</h1>
@@ -70,10 +83,10 @@ const handleCloseModal = () => {
                 <th className='pr-16'>Expiry Date</th>
             </tr>
             {stockItems && stockItems?.map((stockItem)=>(
- 
-
-             
-      <tr key={stockItem.id} className='rounded-[20px] bg-aliceBlue  h-[50px] w-[750px]'>
+              
+              
+              
+              <tr key={stockItem.id} className='rounded-[20px] bg-aliceBlue  h-[50px] w-[750px]'>
            <td className='pr-16'>{stockItem.itemName}</td>
            <td className='pr-16'>{stockItem.amount}</td>
            <td className='pr-16'>{stockItem.unitPrice}</td>
@@ -85,11 +98,10 @@ const handleCloseModal = () => {
            >Remove</button>
            <button className='text-black bg-[#3077FF] h-11 w-24 rounded-2xl ml-5'
           onClick={handleOpenUpdateModal}
-           >
+          >
               Manage
             </button>
       </tr>
-
 
 ))}
             </tbody>
@@ -105,9 +117,10 @@ const handleCloseModal = () => {
     </div>
     {openModal && <AddProduct closeModal={handleCloseModal} /> }
     {openUpdateModal && <Manage closeUpdateModal={handleCloseModal}/>}
-    
-        {/* <Footer/> */}
+{/*     
+        <Footer/> */}
     </div>
+          </>
   )
 }
 

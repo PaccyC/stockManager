@@ -24,8 +24,11 @@ function Manage({closeUpdateModal}) {
     
    }
   return (
-    <form onSubmit={handleUpdateProduct}>
-      <div className='relative mx-24 w-[750px] h-[570px] bg-aliceBlue left-72 top-28 rounded-[20px] flex flex-col justify-center'>
+    <form onSubmit={()=>{
+      handleUpdateProduct()
+      // closeUpdateModal();
+    }}>
+      <div className='absolute w-[900px] h-[70vh] bg-aliceBlue left-72 top-36 rounded-[20px] flex flex-col justify-center'>
         <h1 className='text-center mb-6 text-blue Inter font-normal text-3xl'>Manage</h1>
         <div className='flex flex-col items-center'>
           <div className='text-start'>
@@ -52,7 +55,9 @@ function Manage({closeUpdateModal}) {
             />
           </div>
         </div>
-         <button className=' absolute text-black bg-blue h-[60px] w-[100px] rounded-[15px] text-2xl right-[200px] bottom-3'>
+         <button className=' absolute text-black bg-blue h-[60px] w-[100px] rounded-[15px] text-2xl right-[200px] bottom-3'
+         
+         >
           Save
           </button>
      

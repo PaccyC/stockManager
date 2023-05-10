@@ -7,10 +7,10 @@ import  { FaCheck } from 'react-icons/fa';
 
 export default function MenuDropDown() {
     const menus = [
-      { name: 'history', link: '/', icon:FaHistory },
-        { name: 'settings', link: '/', icon: FiSettings },
-        { name: 'Sold Products', link: '/', icon: FaCheck},
-        { name: 'logout', link: '/', icon: FiLogOut },
+      { name: 'history', link: '/history', icon:FaHistory },
+        { name: 'settings', link: '/settings', icon: FiSettings },
+        { name: 'Sold Products', link: '/sold', icon: FaCheck},
+        { name: 'logout', link: '/logout', icon: FiLogOut },
 ]
       const [isActive,setIsActive]=useState(false);
       const[selectedMenu,setSelectedMenu]=useState(null)
