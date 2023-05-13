@@ -38,15 +38,15 @@ catch(error){
 
 const updateItem=async(req,res)=>{
 
-    const {amount,mfgDate,expDate}=req.body
+    const {itemName,unitPrice,amount}=req.body
    
-   if(!itemName || !amount || !mfgDate || !expDate){
+   if(!itemName || !unitPrice || !amount){
            throw Error("All fields must have value");
         }
     try{
 
         const {id}=req.params
-        const updatedItem= await Items.findByIdAndUpdate(id,{amount,mfgDate,expDate})
+        const updatedItem= await Items.findByIdAndUpdate(id,{itemName,unitPrice,amount})
         updatedItem.save();
         res.status(200).json({updatedItem})
     }
