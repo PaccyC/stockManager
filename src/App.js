@@ -1,4 +1,3 @@
-
 import {BrowserRouter as Router,Routes, Route, Navigate} from 'react-router-dom'
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -14,7 +13,7 @@ function App() {
   const {user}=useAuthContext();
   return (
     
-<div className="dark">
+<div className="">
       
       <Router>
    

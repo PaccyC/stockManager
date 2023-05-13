@@ -9,7 +9,7 @@ function Dashboard(){
    <>
      <Navbar/>
    <MenuDropDown/>
-   <section className='absolute w-[1235px] h-[100vh] top-36 left-72  dark:text-gray dark:bg-slate-900'>
+   <section className='absolute w-[1235px] h-[100vh] top-36 left-72'>
    <h1 className='text-center font-500 text-3xl text-[#0029FF]'>Recent transaction</h1>
    <div>
     <table className='mx-auto'>
