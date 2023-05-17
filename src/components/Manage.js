@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useStockItemContext } from '../hooks/useStockItemsContext';
-function Manage({closeUpdateModal}) {
+function Manage({stockItem}) {
   const [itemName,setItemName]=useState('');
   const [amount,setAmount]=useState(0);
   const [unitPrice,setUnitPrice]=useState(0);
@@ -10,7 +10,7 @@ function Manage({closeUpdateModal}) {
       e.preventDefault();
      const stockItem={itemName,amount,unitPrice};
      
-     const response=await fetch('/api.item',{
+     const response=await fetch(`/api/item/${stockItem._id}`,{
        method:"PUT",
        body:JSON.stringify(stockItem),
        headers:{"Content-Type":"application/json"},
@@ -19,14 +19,12 @@ function Manage({closeUpdateModal}) {
 
      const json=await response.json();
      if(response.ok){
-      dispatch({type:"UPDATE_STOCKITEMS",payload:json});
+      dispatch({type:"UPDATE_STOCKITEM",payload:json});
      }
     
    }
   return (
     <form onSubmit={()=>{
-      handleUpdateProduct()
-      // closeUpdateModal();
     }}>
       <div className='absolute w-[900px] h-[70vh] bg-aliceBlue left-72 top-36 rounded-[20px] flex flex-col justify-center'>
         <h1 className='text-center mb-6 text-blue Inter font-normal text-3xl'>Manage</h1>
@@ -56,9 +54,9 @@ function Manage({closeUpdateModal}) {
           </div>
         </div>
          <button className=' absolute text-black bg-blue h-[60px] w-[100px] rounded-[15px] text-2xl right-[200px] bottom-3'
-         
+         onClick={()=>handleUpdateProduct}
          >
-          Save
+        Save
           </button>
      
       </div>

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
 import logo from '../images/logo.svg'
 import googgle from '../images/google.png'
+import { useEffect } from 'react';
+import jwt_decode  from 'jwt-decode'
 
 export default function Signup() {
   const [username,setUsername]=useState('');
@@ -18,6 +20,27 @@ export default function Signup() {
     await signup(firstName,lastName,phoneNumber,username,email,password)
   }
    
+  const handleCallbackResponse=(response)=>{
+
+     console.log("Encoded JWT Token ID " + response.credential);
+     const userObject=jwt_decode(response.credential);
+     console.log(userObject);
+  }
+  useEffect(()=>{
+    /* global google */
+    google.accounts.id.initialize(
+      {
+        client_id:"995471540536-tufd3guel6uj0lvr74pl8bl8d25cks9d.apps.googleusercontent.com",
+        callback:handleCallbackResponse
+      }
+  
+    )
+    google.accounts.id.renderButton(
+      document.getElementById("googleBtn"),
+      {theme:"outline",size:"large"}
+    )
+  },[]);
+  google.accounts.id.prompt();
  
 
  
@@ -80,12 +103,13 @@ export default function Signup() {
     </div>
     <button  className='w-[200px] h-[60px] bg-[rgb(102,136,255)] rounded-[20px] text-white font-[30px] text-center line-[36px] Inter mx-auto mt-8' disabled={isLoading}>SIGN UP</button>
 
-  <button className='w-[600px] h-[80px] bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'>
+    </form>
+  <button id='googleBtn' className='w-[600px] h-[80px] bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'>
     {error && <div className='w-[300px] h-[40px] border-red-500 bg-white text-red-500'>{error}</div>}
   <img src={googgle} alt='' className='mr-4'/>
   Sign up with Google
 </button>
-    </form>
+<button id='googleBtn'></button>
 </div>
   )
 }

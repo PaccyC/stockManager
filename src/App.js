@@ -11,6 +11,7 @@ import { useState } from 'react';
 function App() {
   const [mode,setMode]=useState("light")
   const {user}=useAuthContext();
+  
   return (
     
 <div className="">

@@ -63,6 +63,9 @@ const handleCloseModal = () => {
   setOpenModal(false);
   setIsInactive(false);
 };
+const updateItem=(id)=>{
+console.log(id);
+}
   return (
     <>
     <Navbar/>
@@ -82,11 +85,12 @@ const handleCloseModal = () => {
                 <th className='pr-16'>Manufactured Date </th>
                 <th className='pr-16'>Expiry Date</th>
             </tr>
+
             {stockItems && stockItems?.map((stockItem)=>(
               
               
               
-              <tr key={stockItem.id} className='rounded-[20px] bg-aliceBlue  h-[50px] w-[750px]'>
+              <tr key={stockItem._id} className='rounded-[20px] bg-aliceBlue  h-[50px] w-[750px]'>
            <td className='pr-16'>{stockItem.itemName}</td>
            <td className='pr-16'>{stockItem.amount}</td>
            <td className='pr-16'>{stockItem.unitPrice}</td>
@@ -96,11 +100,15 @@ const handleCloseModal = () => {
            className='text-black bg-lightRed h-11 w-24 rounded-2xl ml-3'
            onClick={handleDelete}
            >Remove</button>
-           <button className='text-black bg-[#3077FF] h-11 w-24 rounded-2xl ml-5'
-          onClick={handleOpenUpdateModal}
-          >
-              Manage
-            </button>
+         <button
+  className='text-black bg-[#3077FF] h-11 w-24 rounded-2xl ml-5'
+  onClick={() => {
+    handleOpenUpdateModal();
+    updateItem(stockItem._id);
+  }}
+>
+  Manage
+</button>
       </tr>
 
 ))}
