@@ -41,7 +41,7 @@ export default function Navbar() {
             setIsDashboardActive(true);
             setIsStockActive(false);
           }}
-          to='/dashboard'
+          to='/'
         >
           <MdOutlineDashboard className='text-blue text-4xl mr-2' to='/dashboard' />
           <h2 className={`ext-lg font-semibold ${isDashboardActive ? "text-blue":"text-black"} ${

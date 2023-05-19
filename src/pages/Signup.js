@@ -104,11 +104,6 @@ export default function Signup() {
     <button  className='w-[200px] h-[60px] bg-[rgb(102,136,255)] rounded-[20px] text-white font-[30px] text-center line-[36px] Inter mx-auto mt-8' disabled={isLoading}>SIGN UP</button>
 
     </form>
-  <button id='googleBtn' className='w-[600px] h-[80px] bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'>
-    {error && <div className='w-[300px] h-[40px] border-red-500 bg-white text-red-500'>{error}</div>}
-  <img src={googgle} alt='' className='mr-4'/>
-  Sign up with Google
-</button>
 <button id='googleBtn'></button>
 </div>
   )

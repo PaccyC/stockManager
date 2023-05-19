@@ -26,7 +26,7 @@ function Manage({stockItem}) {
   return (
     <form onSubmit={()=>{
     }}>
-      <div className='absolute w-[900px] h-[70vh] bg-aliceBlue left-72 top-36 rounded-[20px] flex flex-col justify-center'>
+      <div className='absolute w-[900px] h-[70vh] bg-aliceBlue left-24 top-36 rounded-[20px] flex flex-col justify-center'>
         <h1 className='text-center mb-6 text-blue Inter font-normal text-3xl'>Manage</h1>
         <div className='flex flex-col items-center'>
           <div className='text-start'>

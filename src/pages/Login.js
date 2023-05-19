@@ -1,8 +1,9 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useLogin } from '../hooks/useLogin';
 import logo from '../images/logo.svg'
 import googgle from '../images/google.png'
+import jwt_decode from 'jwt-decode';
 
 export default function Login() {
   const [email,setEmail]=useState('');
@@ -14,6 +15,30 @@ export default function Login() {
 
   await  login(email,password);
 }
+
+  
+const handleCallbackResponse=(response)=>{
+
+  console.log("Encoded JWT Token ID " + response.credential);
+  const userObject=jwt_decode(response.credential);
+  console.log(userObject);
+}
+useEffect(()=>{
+ /* global google */
+ google.accounts.id.initialize(
+   {
+     client_id:"995471540536-tufd3guel6uj0lvr74pl8bl8d25cks9d.apps.googleusercontent.com",
+     callback:handleCallbackResponse
+   }
+
+ )
+ google.accounts.id.renderButton(
+   document.getElementById("googleBtn"),
+   {theme:"outline",size:"large"}
+ )
+},[]);
+google.accounts.id.prompt();
+
 
   return (
 <div className='absolute mx-24 w-[750px] h-[600px] bg-aliceBlue text-center left-72 top-36 rounded-[20px] flex flex-col justify-center'>
@@ -41,11 +66,9 @@ export default function Login() {
     
     <button className='w-[200px] h-[50px] bg-[#6688FF] rounded-[20px] font-600 text-2xl text-white  text-center line-[36px] Inter mx-auto mt-8'>LOGIN</button>
 
-    <button className='w-[500px] h-14 bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'>
-      <img src={googgle} alt='' className='mr-4'/>
-      Login with Google
-    </button>
+
   </form>
+  <button id='googleBtn' className='w-[500px] h-14 bg-white rounded-[20px] mx-auto text-black font-normal font-4xl mt-6 flex items-center justify-center'></button>
 </div>
 
   )
