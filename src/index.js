@@ -14,7 +14,6 @@ const loadingMarkup = (
 );
 
 const RootComponent = () => {
-  const { t } = useTranslation();
 
   return (
     <Suspense fallback={loadingMarkup}>

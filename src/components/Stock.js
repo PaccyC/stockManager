@@ -52,10 +52,11 @@ function Stock({ stockItem }) {
   const [openModal, setOpenModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [isInactive, setIsInactive] = useState(false);
+  const [showAllItems, setShowAllItems] = useState(false);
 
   const handleOpenModal = () => {
     setOpenModal(true);
-    setIsInactive(true); // Set other elements as inactive when the popup is opened
+    setIsInactive(true);
   };
 
   const handleOpenUpdateModal = () => {
@@ -65,6 +66,7 @@ function Stock({ stockItem }) {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+    setOpenUpdateModal(false);
     setIsInactive(false);
   };
 
@@ -72,18 +74,27 @@ function Stock({ stockItem }) {
     console.log(id);
   };
 
+  const handleViewAll = () => {
+    setShowAllItems(true);
+  };
+
   return (
     <>
       <Navbar />
       <MenuDropDown />
-      <div className='absolute w-[1235px] h-[150vh] top-36 left-[270px]'>
+      <div className='absolute w-[1235px] h-[100vh] top-36 left-[270px]'>
         <div className={` ${isInactive ? 'inactive' : ''}`}>
           <h1 className='font-normal text-[26px] font-400 text-black text-center my-4'>
             Available Products in stock
           </h1>
-          <Link to='/' className='absolute text-2xl font-400 Inter text-[#000AFF] right-11 top-5'>
-            View All
-          </Link>
+        
+          {!showAllItems && (
+            <Link to='/stock' className='absolute text-2xl font-400 Inter text-[#000AFF] right-11 top-5'
+            onClick={handleViewAll}
+            >
+              View All
+            </Link>
+          )}
           <table className='mx-auto '>
             <tbody className=' flex flex-col gap-2'>
               <tr>
@@ -95,7 +106,7 @@ function Stock({ stockItem }) {
               </tr>
 
               {stockItems &&
-                stockItems?.map((stockItem) => (
+                stockItems?.slice(0, showAllItems ? stockItems.length : 2).map((stockItem)=>(
                   <tr key={stockItem.id} className='rounded-[20px] bg-aliceBlue p-3 flex justify-between items-center'>
                     <td className='pr-16'>{stockItem.itemName}</td>
                     <td className='pr-16'>{stockItem.amount}</td>
@@ -119,19 +130,24 @@ function Stock({ stockItem }) {
                     </td>
                   </tr>
                 ))}
+          
             </tbody>
           </table>
-          <hr className='absolute h-[0] w-[1000px] border-s border-1 border-[#BBBBBB] shadow-md bg-opacity-25 bottom-52 left-64'></hr>
-          <button
-            className='absolute flex flex-row h-14 w-44 text-center pl-3 rounded-3xl items-center bg-[#6688FF] text-black bottom-36 right-56'
-            onClick={handleOpenModal}
-          >
-            Add Products<MdAdd className='pl-1 font-bold text-4xl' />
-          </button>
+          {!showAllItems && (
+            <hr className='absolute h-[0] w-[1000px] border-s border-1 border-[#BBBBBB] shadow-md bg-opacity-25 bottom-52 left-0'></hr>
+          )}
+          {!showAllItems && (
+            <button
+              className='absolute flex flex-row h-14 w-44 text-center pl-3 rounded-3xl items-center bg-[#6688FF] text-black bottom-36 right-56'
+              onClick={handleOpenModal}
+            >
+              Add Products<MdAdd className='pl-1 font-bold text-4xl' />
+            </button>
+          )}
         </div>
         {openModal && <AddProduct closeModal={handleCloseModal} />}
         {openUpdateModal && <Manage closeUpdateModal={handleCloseModal} />}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

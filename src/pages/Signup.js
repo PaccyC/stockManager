@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
 import logo from '../images/logo.svg'
-import googgle from '../images/google.png'
 import { useEffect } from 'react';
 import jwt_decode  from 'jwt-decode'
 
@@ -105,6 +104,7 @@ export default function Signup() {
 
     </form>
 <button id='googleBtn'></button>
+{error && <div>{error}</div>}
 </div>
   )
 }

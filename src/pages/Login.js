@@ -2,7 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import { useLogin } from '../hooks/useLogin';
 import logo from '../images/logo.svg'
-import googgle from '../images/google.png'
+
 import jwt_decode from 'jwt-decode';
 
 export default function Login() {

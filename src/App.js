@@ -1,13 +1,14 @@
+import { useState } from 'react';
 import {BrowserRouter as Router,Routes, Route, Navigate} from 'react-router-dom'
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Home from './pages/Home';
 import Dashboard from './components/Dashboard'
 import Stock from './components/Stock';
 import Settings from './components/Settings';
-
+import Logout from './components/Logout';
 import { useAuthContext } from './hooks/useAuthContext';
-import { useState } from 'react';
+import { CssBaseline,ThemeProvider } from "@mui/material";
+import {ColorModeContext,useMode} from './theme'
 function App() {
   const [mode,setMode]=useState("light")
   const {user}=useAuthContext();
@@ -24,6 +25,7 @@ function App() {
             <Route path='/signup' element={!user ? <Signup/>: <Navigate to='/'/>}/>
             <Route path='/stock' element={!user ?<Navigate to='/login'/> : <Stock/>}/>
             <Route path='/settings' element={!user ?<Navigate to='/login'/> : <Settings mode={mode} setMode={setMode}/>}/>
+            <Route path='/logout' element={!user ?<Navigate to='/login'/> : <Logout/>}/>
           </Routes>
 
         </Router>
