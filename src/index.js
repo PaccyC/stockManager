@@ -5,6 +5,7 @@ import App from './App';
 import { AuthContextProvider } from './context/AuthContext';
 import { StockContextProvider } from './context/StockItemsContext';
 import { I18nextProvider, useTranslation } from 'react-i18next';
+import { BrowserRouter as Router } from 'react-router-dom';
 import i18n from './i18n';
 
 const loadingMarkup = (
@@ -19,7 +20,10 @@ const RootComponent = () => {
     <Suspense fallback={loadingMarkup}>
       <AuthContextProvider>
         <StockContextProvider>
+          <Router>
+
           <App />
+          </Router>
         </StockContextProvider>
       </AuthContextProvider>
     </Suspense>

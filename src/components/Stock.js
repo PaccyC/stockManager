@@ -4,7 +4,7 @@ import { useStockItemContext } from '../hooks/useStockItemsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import Footer from './Footer';
+
 import { MdAdd } from 'react-icons/md';
 import AddProduct from './AddProductForm';
 import Manage from '../components/Manage';
@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import MenuDropDown from './MenuDropDown';
 import Navbar from './Navbar';
 
-function Stock({ stockItem }) {
+function Stock() {
   const { stockItems, dispatch } = useStockItemContext();
   const { user } = useAuthContext();
 
@@ -77,7 +77,6 @@ function Stock({ stockItem }) {
   const handleViewAll = () => {
     setShowAllItems(true);
   };
-
   return (
     <>
       <Navbar />
@@ -106,7 +105,9 @@ function Stock({ stockItem }) {
               </tr>
 
               {stockItems &&
-                stockItems?.slice(0, showAllItems ? stockItems.length : 2).map((stockItem)=>(
+                stockItems?.slice(0, showAllItems ? stockItems.length : 2).map((stockItem)=>{
+                  return(
+
                   <tr key={stockItem.id} className='rounded-[20px] bg-aliceBlue p-3 flex justify-between items-center'>
                     <td className='pr-16'>{stockItem.itemName}</td>
                     <td className='pr-16'>{stockItem.amount}</td>
@@ -127,9 +128,11 @@ function Stock({ stockItem }) {
                       }}
                     >
                       <button className='py-2'>Manage</button>
+                      
                     </td>
                   </tr>
-                ))}
+                  )
+})}
           
             </tbody>
           </table>

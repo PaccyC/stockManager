@@ -90,7 +90,7 @@ function AddProduct({ closeModal }) {
         </div>
         <button
           className='absolute text-black bg-blue h-[60px] w-[100px] rounded-[15px] text-2xl right-[200px] bottom-0'
-          type="submit" // Ensure the button triggers form submission
+          type="submit"
         >
           Add
         </button>

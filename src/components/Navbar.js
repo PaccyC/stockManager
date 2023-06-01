@@ -6,15 +6,26 @@ import { MdOutlineDashboard } from 'react-icons/md';
 import { AiOutlineStock } from 'react-icons/ai';
 import {IoMdNotifications} from 'react-icons/io';
 import {MdOutlineKeyboardArrowDown} from 'react-icons/md'
+import { Box,IconButton,useTheme,InputBase } from '@mui/material'
+import { useContext } from 'react'
+import { ColorModeContext,tokens } from '../theme'
+
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 
 
 export default function Navbar() {
   const [isStockActive, setIsStockActive] = useState(false);
   const [isDashboardActive, setIsDashboardActive] = useState(false);
   const menus=["Settings","Profile Information","Notifications","Logout"];
-  const [open,setOpen]=useState(false);
-  const menuRef=useRef();
-
+  // const [open,setOpen]=useState(false);
+  const theme=useTheme();
+  const colors=tokens(theme.palette.mode)
+  const colorMode=useContext(ColorModeContext);
 
   return (
     <div className='w-[100%] h-[120px] left-0 top-0 bg-aliceBlue border-2 border-s border-silver flex justify-between items-center pr-5'>
@@ -56,7 +67,7 @@ export default function Navbar() {
        </Link>
     
       </div>
-      <div className='relative w-[175px] h-[70px] bg-aliceBlue border-s border-2 border-gray rounded-[40px]'>
+      {/* <div className='relative w-[175px] h-[70px] bg-aliceBlue border-s border-2 border-gray rounded-[40px]'>
         <button className='absolute top-[50%] left-[70%] text-4xl font-normal'>
           <MdOutlineKeyboardArrowDown onClick={()=>setOpen(!open)} />
         </button>
@@ -74,7 +85,18 @@ export default function Navbar() {
 
         </div>
       }
-      </div>
+      </div> */}
+
+<Box display="flex">
+        <IconButton onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode ==='dark' ? <LightModeOutlinedIcon/>:<DarkModeOutlinedIcon/>}
+           </IconButton>
+        <IconButton><NotificationsOutlinedIcon/></IconButton>
+        <IconButton><SettingsOutlinedIcon/></IconButton>
+        <IconButton><PersonOutlinedIcon/></IconButton>
+        
+
+    </Box>
     </div>
   );
 }

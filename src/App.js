@@ -7,17 +7,16 @@ import Stock from './components/Stock';
 import Settings from './components/Settings';
 import Logout from './components/Logout';
 import { useAuthContext } from './hooks/useAuthContext';
-import { CssBaseline,ThemeProvider } from "@mui/material";
-import {ColorModeContext,useMode} from './theme'
+import Notifications from './components/Notifications';
 function App() {
   const [mode,setMode]=useState("light")
   const {user}=useAuthContext();
   
   return (
     
-<div className="">
+<div className="app">
       
-      <Router>
+  
    
       <Routes>
             <Route path='/' element={!user ?<Navigate to='/login'/>: <Dashboard/>}/>
@@ -26,9 +25,11 @@ function App() {
             <Route path='/stock' element={!user ?<Navigate to='/login'/> : <Stock/>}/>
             <Route path='/settings' element={!user ?<Navigate to='/login'/> : <Settings mode={mode} setMode={setMode}/>}/>
             <Route path='/logout' element={!user ?<Navigate to='/login'/> : <Logout/>}/>
+            <Route path='/notifications' element={!user  ?<Navigate to='/login'/>:<Notifications/>}></Route>
+
           </Routes>
 
-        </Router>
+    
       </div>
    
     
