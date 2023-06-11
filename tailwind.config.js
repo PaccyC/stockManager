@@ -24,9 +24,6 @@ darkMode:"class",
     lightRed:'rgba(255,11,11,0.76)'
    }
     },
-  },
-  plugins: [
-    // require('@tailwindcss/forms')
-  ],
+  }
 }
 

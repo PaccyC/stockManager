@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { AuthContextProvider } from './context/AuthContext';
 import { StockContextProvider } from './context/StockItemsContext';
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import { BrowserRouter as Router } from 'react-router-dom';
 import i18n from './i18n';
 
@@ -20,10 +20,13 @@ const RootComponent = () => {
     <Suspense fallback={loadingMarkup}>
       <AuthContextProvider>
         <StockContextProvider>
+     
+
           <Router>
 
           <App />
           </Router>
+    
         </StockContextProvider>
       </AuthContextProvider>
     </Suspense>

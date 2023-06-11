@@ -1,5 +1,6 @@
+
 {
-  "proxy": "http://localhost:6500",
+  "proxy":"http://localhost:6400",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,

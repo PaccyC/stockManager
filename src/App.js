@@ -14,7 +14,7 @@ function App() {
   
   return (
     
-<div className="app">
+<div className=" max-w[1440px]">
       
   
    
