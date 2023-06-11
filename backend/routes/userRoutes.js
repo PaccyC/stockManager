@@ -7,6 +7,7 @@ router.get('/',userController.getUsers);
 router.post('/signup',userController.register);
 
 router.post('/login',userController.login);
+router.post("/checkCredentials",userController.checkCredentials);
 
 router.put('/:id',userController.update);
 

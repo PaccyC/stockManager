@@ -107,3 +107,23 @@ exports.delete=async(req,res)=>{
   res.status(400).json({error:error.message})
   }
 }
+
+exports.checkCredentials=async(req,res)=>{
+
+    const {username,password}=req.body;
+
+    try{
+        const user=await User.findOne({email});
+        if(password=user.password && username == user.username){
+            res.status(200);
+        }
+        else{
+       throw Error ("Invalid credentials");
+        }
+
+}
+    catch(error){
+        res.json({error:error.message}).status(400);
+    }
+
+}

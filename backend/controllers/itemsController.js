@@ -1,5 +1,6 @@
 
 const Items=require('../models/itemsModel');
+const Notification= require('../models/notificationModel');
 
 const addItem=async(req,res)=>{
 
@@ -11,6 +12,15 @@ const addItem=async(req,res)=>{
      }
      const item= await Items.create({itemName,amount,unitPrice,mfgDate,expDate});
      res.status(200).json({item});
+
+     const notification= new Notification({
+       title: `New Item has been added to the Stock`,
+       description:`${item.itemName } has been added to stock` 
+     })
+     console.log(notification.title,notification.description);
+     
+     await notification.save();
+
      return item;
 
     }
@@ -49,7 +59,14 @@ const updateItem=async(req,res)=>{
         const updatedItem= await Items.findByIdAndUpdate(id,{itemName,unitPrice,amount})
         updatedItem.save();
         res.status(200).json({updatedItem})
-    }
+
+        const notification= new Notification({
+          title: `${updatedItem.itemName } is updated`,
+          description:`${updatedItem.itemName } has been updated` 
+        })
+        await notification.save();
+       
+}
  
     catch(err){
         res.status(400).json({err:err.message})
@@ -68,6 +85,14 @@ const deleteItem = async (req, res) => {
       res.status(200).json({
         message: `Item with id of ${item._id} has been successfully deleted`,
       });
+
+      const notification= new Notification({
+        title: ` Deleted Stock Item`,
+        description:`${item.itemName } has been deleted from stock` 
+      })
+      console.log(notification.description);
+      await notification.save();
+
     } catch (error) {
       res.status(400).json({ error: error.message });
     }

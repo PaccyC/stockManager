@@ -3,10 +3,12 @@ const dotenv=require('dotenv');
 const mongoose=require('mongoose');
 const cors=require('cors');
 
+
 //setting routes
 
 const userRoutes=require('./routes/userRoutes');
 const itemRoutes=require('./routes/items');
+const notificationRoute= require('./routes/notifications');
 
 // configuring environment variables
 dotenv.config();
@@ -27,3 +29,4 @@ app.use(express.json());
 
 app.use('/api/user',userRoutes);
 app.use('/api/item',itemRoutes);
+app.use('/api/notifications',notificationRoute);
